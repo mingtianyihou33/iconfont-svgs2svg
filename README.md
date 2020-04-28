@@ -1,0 +1,2 @@
+# iconfont-svgs2svg
+将阿里iconfont下载后包含多个svg图标的文件转换为单个svg文件
