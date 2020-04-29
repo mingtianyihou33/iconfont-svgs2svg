@@ -1,10 +1,15 @@
 {
   "name": "iconfont-svgs2svg",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "main": "index.js",
   "repository": "git@github.com:mingtianyihou33/iconfont-svgs2svg.git",
   "author": "mingtianyihou33 <liumingyi1428@126.com>",
   "license": "MIT",
+  "description": "iconfont svg多个图标文件转单个svg图标文件",
+  "keywords": [
+    "iconfont",
+    "svg"
+  ],
   "bin": {
     "iconfont": "bin/cli.js"
   },
