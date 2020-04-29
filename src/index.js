@@ -1,18 +1,8 @@
 const fs = require('fs')
 const xmlJs = require('xml-js')
-const {isSvg} = require('./util')
+const {isSvg, mkdirsSync} = require('./util')
 const path = require('path')
-let inputPath = 'inputDir'
-// let inputPath = 'inputDir/iconfont.svg'
-let outputPath = 'outputDir'
-try {
-  const files = readSvgFiles(inputPath)
-  files.forEach(file => {
-    svgsToSvg(file[0], file[1])
-  })
-} catch (e) {
-  console.error(e)
-}
+
 
 function readSvgFiles(inputPath) {
   let files = []
@@ -35,7 +25,7 @@ function readSvgFiles(inputPath) {
   return files
 }
 
-function svgsToSvg(file, dirname) {
+function svgsToSvg(file, dirname, outputPath) {
   let content = file.toString()
   let obj = xmlJs.xml2js(content)
   let svgTemplate = getSvgTemplateObj()
@@ -45,7 +35,7 @@ function svgsToSvg(file, dirname) {
   let font = defs.elements.find(element => element.name === 'font')
   let fontElements = font.elements
   let baseDir = `${outputPath}/${dirname}`
-  if(!fs.existsSync(baseDir)) fs.mkdirSync(baseDir)
+  mkdirsSync(baseDir)
   for (let i = fontElements.length - 1; i >= 0; i--) {
     if (fontElements[i].name === "glyph") {
       let attrs = fontElements[i].attributes
@@ -56,7 +46,16 @@ function svgsToSvg(file, dirname) {
 }
 
 function getSvgTemplateObj() {
-  let file = fs.readFileSync('src/iconfontSvgTemplate.svg')
+  let file = fs.readFileSync(path.resolve(__dirname, 'iconfontSvgTemplate.svg'))
   let content = file.toString()
   return xmlJs.xml2js(content)
 }
+
+function convert(inputPath, outputPath) {
+  const files = readSvgFiles(inputPath)
+  files.forEach(file => {
+    svgsToSvg(file[0], file[1], outputPath)
+  })
+}
+
+module.exports = convert
