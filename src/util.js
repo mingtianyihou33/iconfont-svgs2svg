@@ -5,9 +5,9 @@ function isSvg(filePath) {
   return path.extname(filePath) === '.svg'
 }
 
-function mkdirsSync(dir) {
+function mkdirSync(dir) {
   if (fs.existsSync(dir)) return true
-  if (mkdirsSync(path.dirname(dir))) {
+  if (mkdirSync(path.dirname(dir))) {
     fs.mkdirSync(dir)
     return true
   }
@@ -15,5 +15,5 @@ function mkdirsSync(dir) {
 
 module.exports = {
   isSvg,
-  mkdirsSync
+  mkdirSync
 }

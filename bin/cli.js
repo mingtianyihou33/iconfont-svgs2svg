@@ -1,6 +1,5 @@
 #!/usr/bin/env node
 const convert = require('../src/index')
-const path = require('path')
 let args = process.argv.slice(2)
 
 function error(msg) {
