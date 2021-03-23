@@ -1,6 +1,6 @@
 {
   "name": "iconfont-svgs2svg",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "main": "index.js",
   "repository": "git@github.com:mingtianyihou33/iconfont-svgs2svg.git",
   "author": "mingtianyihou33 <liumingyi1428@126.com>",
@@ -13,10 +13,14 @@
   "bin": {
     "iconfont": "bin/cli.js"
   },
+  "scripts": {
+    "start": "node src/index.js",
+    "version": "conventional-changelog -p angular -i CHANGELOG.md -s && git add CHANGELOG.md"
+  },
   "dependencies": {
     "xml-js": "^1.6.11"
   },
-  "scripts": {
-    "start": "node src/index.js"
+  "devDependencies": {
+    "conventional-changelog-cli": "^2.1.1"
   }
 }
